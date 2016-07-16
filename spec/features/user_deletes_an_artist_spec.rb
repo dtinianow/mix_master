@@ -13,7 +13,6 @@ RSpec.feature "User deletes an artist" do
     click_on "Bob Marley"
     expect(page).to have_css("img[src=\"#{artist_image_path}\"]")
     # And I click on "Delete"
-    save_and_open_page
     click_on "Delete"
     # Then I should be back on the artist index page
     expect(page).to have_current_path(artists_path)

@@ -8,19 +8,21 @@ RSpec.feature "User views all artists" do
     mastodon = "Mastodon"
     mastodon_image_path = "https://pbs.twimg.com/profile_images/489801255716270080/Zrmh9T__.jpeg"
     # Given that artists exist in the database
-    Artist.create(name: bob_marley, image_path: bob_marley_image_path)
-    Artist.create(name: mastodon, image_path: mastodon_image_path)
+    artist_bob = Artist.create(name: bob_marley, image_path: bob_marley_image_path)
+    artist_mastodon = Artist.create(name: mastodon, image_path: mastodon_image_path)
     # When I visit the artists index
     visit artists_path
     # Then I should see each artist's name
-    expect(page).to have_content bob_marley
-    expect(page).to have_content mastodon
+    expect(page).to have_link bob_marley, href: artist_path(artist_bob)
+    expect(page).to have_link mastodon, href: artist_path(artist_mastodon)
     # And each name should link to that artist's individual page
-    click_on bob_marley
+    click_link bob_marley
     expect(page).to have_content bob_marley
     expect(page).to have_css("img[src=\"#{bob_marley_image_path}\"]")
+
     click_on "Return to All Artists"
-    click_on mastodon
+    click_link mastodon
+
     expect(page).to have_content mastodon
     expect(page).to have_css("img[src=\"#{mastodon_image_path}\"]")
   end
