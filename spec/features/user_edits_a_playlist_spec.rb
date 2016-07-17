@@ -12,7 +12,6 @@ RSpec.feature "User edits a playlist" do
     click_on "Edit"
     # And I click on "Edit"
     fill_in 'playlist_name', with: 'Jams'
-    save_and_open_page
     # And I enter a new playlist name
     uncheck("song-#{first.id}")
     # And I select an additional song
