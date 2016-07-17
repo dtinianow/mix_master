@@ -1,5 +1,6 @@
 class PlaylistsController < ApplicationController
   def index
+    @playlists = Playlist.all
   end
 
   def new
@@ -12,6 +13,15 @@ class PlaylistsController < ApplicationController
 
   def create
     @playlist = Playlist.create(playlist_params)
+    redirect_to @playlist
+  end
+
+  def edit
+    @playlist = Playlist.find(params[:id])
+  end
+
+  def update
+    @playlist = Playlist.update(playlist_params)
     redirect_to @playlist
   end
 
