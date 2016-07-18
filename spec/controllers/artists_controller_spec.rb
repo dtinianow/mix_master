@@ -115,7 +115,5 @@ RSpec.describe ArtistsController, type: :controller do
       delete :destroy, params: {:id => artist.to_param}
       expect(response).to redirect_to(artists_path)
     end
-
   end
-
 end

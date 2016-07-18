@@ -14,7 +14,6 @@ RSpec.feature "User signs in with Spotify" do
     visit playlists_path
     click_link "Sign in with Spotify"
     expect(page).to have_content("Sign out")
-    save_and_open_page
     expect(page).to have_content(auth_data['info']['id'])
     expect(page).to_not have_content("Sign in with Spotify")
   end
